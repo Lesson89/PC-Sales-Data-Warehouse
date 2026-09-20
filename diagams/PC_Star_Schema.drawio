@@ -1,0 +1,182 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net">
+  <diagram name="PC Sales Star Schema" id="starSchema">
+    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="fact" value="FactSales" style="swimlane;html=1;startSize=30;fillColor=#F4B183;strokeColor=#666666;fontStyle=1;fontSize=13;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;horizontalStack=0;resizeParent=0;collapsible=0;" vertex="1" parent="1">
+          <mxGeometry x="680" y="380" width="220" height="446" as="geometry" />
+        </mxCell>
+        <mxCell id="fact-r0" value="SaleID  (PK)" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontStyle=1;fontSize=11;portConstraint=eastwest;" vertex="1" parent="fact">
+          <mxGeometry y="30" width="220" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="fact-r1" value="LocationID  (FK)" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontStyle=0;fontSize=11;portConstraint=eastwest;" vertex="1" parent="fact">
+          <mxGeometry y="56" width="220" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="fact-r2" value="CustomerID  (FK)" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontStyle=0;fontSize=11;portConstraint=eastwest;" vertex="1" parent="fact">
+          <mxGeometry y="82" width="220" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="fact-r3" value="ProductID  (FK)" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontStyle=0;fontSize=11;portConstraint=eastwest;" vertex="1" parent="fact">
+          <mxGeometry y="108" width="220" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="fact-r4" value="EmployeeID  (FK)" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontStyle=0;fontSize=11;portConstraint=eastwest;" vertex="1" parent="fact">
+          <mxGeometry y="134" width="220" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="fact-r5" value="PurchaseDateID  (FK)" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontStyle=0;fontSize=11;portConstraint=eastwest;" vertex="1" parent="fact">
+          <mxGeometry y="160" width="220" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="fact-r6" value="ShipDateID  (FK)" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontStyle=0;fontSize=11;portConstraint=eastwest;" vertex="1" parent="fact">
+          <mxGeometry y="186" width="220" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="fact-r7" value="Cost Price" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontStyle=0;fontSize=11;portConstraint=eastwest;" vertex="1" parent="fact">
+          <mxGeometry y="212" width="220" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="fact-r8" value="Sale Price" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontStyle=0;fontSize=11;portConstraint=eastwest;" vertex="1" parent="fact">
+          <mxGeometry y="238" width="220" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="fact-r9" value="Payment Method" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontStyle=0;fontSize=11;portConstraint=eastwest;" vertex="1" parent="fact">
+          <mxGeometry y="264" width="220" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="fact-r10" value="Discount Amount" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontStyle=0;fontSize=11;portConstraint=eastwest;" vertex="1" parent="fact">
+          <mxGeometry y="290" width="220" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="fact-r11" value="Finance Amount" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontStyle=0;fontSize=11;portConstraint=eastwest;" vertex="1" parent="fact">
+          <mxGeometry y="316" width="220" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="fact-r12" value="Channel" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontStyle=0;fontSize=11;portConstraint=eastwest;" vertex="1" parent="fact">
+          <mxGeometry y="342" width="220" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="fact-r13" value="Priority" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontStyle=0;fontSize=11;portConstraint=eastwest;" vertex="1" parent="fact">
+          <mxGeometry y="368" width="220" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="fact-r14" value="Cost of Repairs" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontStyle=0;fontSize=11;portConstraint=eastwest;" vertex="1" parent="fact">
+          <mxGeometry y="394" width="220" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="fact-r15" value="Credit Score" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontStyle=0;fontSize=11;portConstraint=eastwest;" vertex="1" parent="fact">
+          <mxGeometry y="420" width="220" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="dimLocation" value="DimLocation" style="swimlane;html=1;startSize=30;fillColor=#9DC3E6;strokeColor=#666666;fontStyle=1;fontSize=13;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;horizontalStack=0;resizeParent=0;collapsible=0;" vertex="1" parent="1">
+          <mxGeometry x="80" y="60" width="220" height="186" as="geometry" />
+        </mxCell>
+        <mxCell id="dimLocation-r0" value="LocationID  (PK)" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontStyle=1;fontSize=11;portConstraint=eastwest;" vertex="1" parent="dimLocation">
+          <mxGeometry y="30" width="220" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="dimLocation-r1" value="Continent" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontStyle=0;fontSize=11;portConstraint=eastwest;" vertex="1" parent="dimLocation">
+          <mxGeometry y="56" width="220" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="dimLocation-r2" value="Country or State" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontStyle=0;fontSize=11;portConstraint=eastwest;" vertex="1" parent="dimLocation">
+          <mxGeometry y="82" width="220" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="dimLocation-r3" value="Province or City" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontStyle=0;fontSize=11;portConstraint=eastwest;" vertex="1" parent="dimLocation">
+          <mxGeometry y="108" width="220" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="dimLocation-r4" value="Shop Name" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontStyle=0;fontSize=11;portConstraint=eastwest;" vertex="1" parent="dimLocation">
+          <mxGeometry y="134" width="220" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="dimLocation-r5" value="Shop Age" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontStyle=0;fontSize=11;portConstraint=eastwest;" vertex="1" parent="dimLocation">
+          <mxGeometry y="160" width="220" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="dimCustomer" value="DimCustomer" style="swimlane;html=1;startSize=30;fillColor=#C6E0B4;strokeColor=#666666;fontStyle=1;fontSize=13;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;horizontalStack=0;resizeParent=0;collapsible=0;" vertex="1" parent="1">
+          <mxGeometry x="1240" y="60" width="220" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="dimCustomer-r0" value="CustomerID  (PK)" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontStyle=1;fontSize=11;portConstraint=eastwest;" vertex="1" parent="dimCustomer">
+          <mxGeometry y="30" width="220" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="dimCustomer-r1" value="Customer Name" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontStyle=0;fontSize=11;portConstraint=eastwest;" vertex="1" parent="dimCustomer">
+          <mxGeometry y="56" width="220" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="dimCustomer-r2" value="Customer Surname" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontStyle=0;fontSize=11;portConstraint=eastwest;" vertex="1" parent="dimCustomer">
+          <mxGeometry y="82" width="220" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="dimCustomer-r3" value="Customer Contact Number" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontStyle=0;fontSize=11;portConstraint=eastwest;" vertex="1" parent="dimCustomer">
+          <mxGeometry y="108" width="220" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="dimCustomer-r4" value="Customer Email Address" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontStyle=0;fontSize=11;portConstraint=eastwest;" vertex="1" parent="dimCustomer">
+          <mxGeometry y="134" width="220" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="dimProduct" value="DimProduct" style="swimlane;html=1;startSize=30;fillColor=#FFD966;strokeColor=#666666;fontStyle=1;fontSize=13;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;horizontalStack=0;resizeParent=0;collapsible=0;" vertex="1" parent="1">
+          <mxGeometry x="80" y="700" width="220" height="212" as="geometry" />
+        </mxCell>
+        <mxCell id="dimProduct-r0" value="ProductID  (PK)" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontStyle=1;fontSize=11;portConstraint=eastwest;" vertex="1" parent="dimProduct">
+          <mxGeometry y="30" width="220" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="dimProduct-r1" value="PC Make" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontStyle=0;fontSize=11;portConstraint=eastwest;" vertex="1" parent="dimProduct">
+          <mxGeometry y="56" width="220" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="dimProduct-r2" value="PC Model" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontStyle=0;fontSize=11;portConstraint=eastwest;" vertex="1" parent="dimProduct">
+          <mxGeometry y="82" width="220" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="dimProduct-r3" value="Storage Type" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontStyle=0;fontSize=11;portConstraint=eastwest;" vertex="1" parent="dimProduct">
+          <mxGeometry y="108" width="220" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="dimProduct-r4" value="Storage Capacity" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontStyle=0;fontSize=11;portConstraint=eastwest;" vertex="1" parent="dimProduct">
+          <mxGeometry y="134" width="220" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="dimProduct-r5" value="RAM" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontStyle=0;fontSize=11;portConstraint=eastwest;" vertex="1" parent="dimProduct">
+          <mxGeometry y="160" width="220" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="dimProduct-r6" value="PC Market Price" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontStyle=0;fontSize=11;portConstraint=eastwest;" vertex="1" parent="dimProduct">
+          <mxGeometry y="186" width="220" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="dimEmployee" value="DimEmployee" style="swimlane;html=1;startSize=30;fillColor=#D9B3E6;strokeColor=#666666;fontStyle=1;fontSize=13;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;horizontalStack=0;resizeParent=0;collapsible=0;" vertex="1" parent="1">
+          <mxGeometry x="1240" y="700" width="220" height="134" as="geometry" />
+        </mxCell>
+        <mxCell id="dimEmployee-r0" value="EmployeeID  (PK)" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontStyle=1;fontSize=11;portConstraint=eastwest;" vertex="1" parent="dimEmployee">
+          <mxGeometry y="30" width="220" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="dimEmployee-r1" value="Sales Person Name" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontStyle=0;fontSize=11;portConstraint=eastwest;" vertex="1" parent="dimEmployee">
+          <mxGeometry y="56" width="220" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="dimEmployee-r2" value="Sales Person Department" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontStyle=0;fontSize=11;portConstraint=eastwest;" vertex="1" parent="dimEmployee">
+          <mxGeometry y="82" width="220" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="dimEmployee-r3" value="Total Sales per Employee" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontStyle=0;fontSize=11;portConstraint=eastwest;" vertex="1" parent="dimEmployee">
+          <mxGeometry y="108" width="220" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="dimDate" value="DimDate" style="swimlane;html=1;startSize=30;fillColor=#D9D9D9;strokeColor=#666666;fontStyle=1;fontSize=13;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;horizontalStack=0;resizeParent=0;collapsible=0;" vertex="1" parent="1">
+          <mxGeometry x="1240" y="380" width="220" height="212" as="geometry" />
+        </mxCell>
+        <mxCell id="dimDate-r0" value="DateID  (PK)" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontStyle=1;fontSize=11;portConstraint=eastwest;" vertex="1" parent="dimDate">
+          <mxGeometry y="30" width="220" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="dimDate-r1" value="Date" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontStyle=0;fontSize=11;portConstraint=eastwest;" vertex="1" parent="dimDate">
+          <mxGeometry y="56" width="220" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="dimDate-r2" value="Day" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontStyle=0;fontSize=11;portConstraint=eastwest;" vertex="1" parent="dimDate">
+          <mxGeometry y="82" width="220" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="dimDate-r3" value="Month" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontStyle=0;fontSize=11;portConstraint=eastwest;" vertex="1" parent="dimDate">
+          <mxGeometry y="108" width="220" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="dimDate-r4" value="Quarter" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontStyle=0;fontSize=11;portConstraint=eastwest;" vertex="1" parent="dimDate">
+          <mxGeometry y="134" width="220" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="dimDate-r5" value="Year" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontStyle=0;fontSize=11;portConstraint=eastwest;" vertex="1" parent="dimDate">
+          <mxGeometry y="160" width="220" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="dimDate-r6" value="Weekday" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=6;fontStyle=0;fontSize=11;portConstraint=eastwest;" vertex="1" parent="dimDate">
+          <mxGeometry y="186" width="220" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" value="" style="edgeStyle=entityRelationEdgeStyle;fontSize=10;html=1;endArrow=ERmany;startArrow=ERone;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="dimLocation-r0" target="fact-r1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" value="" style="edgeStyle=entityRelationEdgeStyle;fontSize=10;html=1;endArrow=ERmany;startArrow=ERone;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="dimCustomer-r0" target="fact-r2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" value="" style="edgeStyle=entityRelationEdgeStyle;fontSize=10;html=1;endArrow=ERmany;startArrow=ERone;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="dimProduct-r0" target="fact-r3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" value="" style="edgeStyle=entityRelationEdgeStyle;fontSize=10;html=1;endArrow=ERmany;startArrow=ERone;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="dimEmployee-r0" target="fact-r4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" value="Purchase" style="edgeStyle=entityRelationEdgeStyle;fontSize=10;html=1;endArrow=ERmany;startArrow=ERone;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="dimDate-r0" target="fact-r5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" value="Ship" style="edgeStyle=entityRelationEdgeStyle;fontSize=10;html=1;endArrow=ERmany;startArrow=ERone;rounded=0;exitX=0;exitY=0.25;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="dimDate-r0" target="fact-r6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
