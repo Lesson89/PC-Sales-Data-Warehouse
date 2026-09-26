@@ -34,3 +34,39 @@ Import raw CSV sales data and save it safely into the Bronze staging table, so I
 - Standardize and clean the data in the Silver layer based on what that profiling finds
 - Build the Silver transformation logic, likely back in SSIS, now that the messy-data patterns are better understood
 - Eventually load the cleaned Silver data into the Gold star schema
+
+
+---
+
+## 2026-09-25
+**Goal:**
+
+Profile the Bronze data for issues, plan the Silver layer table structure, load the data from Bronze into Silver, clean it, check for unnecessary spaces, trim text, fix the "N/A" Ship Date values, and check for duplicates.
+
+**Done:**
+
+- Ran systematic profiling queries across every Bronze column — checked NULLs, blanks, and literal "N/A" text on all 20 text columns, plus NULL/min/max checks on all 9 numeric columns
+- Found only one real issue: ShipDate has 5,071 "N/A" values (orders not yet shipped) — everything else in Bronze is clean
+- Designed the Silver table (CleanedSales) with proper DATE types for PurchaseDate/ShipDate, plus a LoadDateTime audit column
+- Built and ran the load script (02_silver_clean.sql) — TRUNCATE + INSERT from Bronze, with a CASE statement converting "N/A" Ship Dates into real NULLs
+- Verified the load: 10,000 rows, 5,071 NULL ship dates — matches Bronze exactly
+
+**Challenges:**
+
+- CAST(PurchaseDate AS DATE) failed on the whole column, not just a few rows — turned out every date value had a stray trailing period (e.g. "2021-03-12 00:00:00.") that SQL Server's date parser rejected
+- Used TRY_CAST instead of CAST to find the exact failing values without crashing the query — a much faster way to isolate the problem than guessing
+- Fixed it with CAST(LEFT(PurchaseDate, 19) AS DATE) — trims to just the clean YYYY-MM-DD HH:MI:SS portion before converting, discarding the broken trailing character
+- Applied the same fix to both PurchaseDate and ShipDate
+
+**Learned:**
+
+- TRY_CAST is a much better diagnostic tool than CAST when you don't yet know which values are bad — it returns NULL instead of halting the whole query
+- Profiling every column systematically (not just the ones that already caused errors) is worth doing before building the next layer — it turned up nothing new here, which itself was useful confirmation
+- A single formatting quirk (one stray character) can break conversion for 100% of rows, not just a handful — worth checking the full distinct value list, not just a sample
+
+**Next:**
+
+- Check CleanedSales for duplicate rows (not yet done this session)
+- Trim leading/trailing whitespace on text columns as part of the Silver load (profiling checked for it but the load script doesn't explicitly trim yet)
+- Design and build the Gold star schema (FactSales + 5 dimensions) from the cleaned Silver data
+- Eventually revisit SSIS for the Silver → Gold load, now that the messy-data patterns are better understood
