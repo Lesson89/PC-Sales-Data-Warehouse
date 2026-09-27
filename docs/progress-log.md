@@ -18,6 +18,7 @@ Import raw CSV sales data and save it safely into the Bronze staging table, so I
 **Done:**
 
 **Challenges:**
+
 - Originally planned to extract and load the CSV using SSIS, following the medallion structure end to end
 - Hit repeated data type mismatches between the CSV source and the Bronze table — unicode vs non-unicode strings, date parsing failures, and a discovery that some "Ship Date" values contained literal text ("N/A") instead of blank cells, since not every order had shipped yet
 - Spent real time debugging these in SSIS (adjusting column types, syncing metadata, tracing exact error rows) and learned a lot about how SSIS handles type conversion
@@ -25,11 +26,13 @@ Import raw CSV sales data and save it safely into the Bronze staging table, so I
 - Chose to load Bronze manually via the SSMS Import Flat File wizard instead, so I could shape, clean, and transform the data properly at the Silver layer, then use SSIS for the Silver/Gold load where the transformation logic actually justifies it
 
 **Learned:**
+
 - SSIS is sensitive to exact type matches between source and destination — even a column that looks fine can fail if the source parser and the destination column don't agree precisely on type and length
 - For raw ingestion, it can be safer to load the data first without a rigid pre-built table structure, rather than defining Bronze's structure upfront and forcing the CSV to conform to it — defining structure too early created avoidable conflicts and wasted time questioning the data before it was even safely saved
 - The Import Flat File wizard is a fast, low-friction way to get raw data safely into SQL Server first, before deciding on transformations
 
 **Next:**
+
 - Query and profile the Bronze data — check for blanks, inconsistent text values (like "N/A"), and other anomalies across all columns, not just the ones that already caused errors
 - Standardize and clean the data in the Silver layer based on what that profiling finds
 - Build the Silver transformation logic, likely back in SSIS, now that the messy-data patterns are better understood
