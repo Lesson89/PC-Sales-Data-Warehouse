@@ -24,6 +24,17 @@ model (star schema) suitable for BI reporting.
 | **Silver** | Cleaned, typed, de-duplicated data | ✅ Done — `sql/02_silver_clean.sql` |
 | **Gold** | Star schema (dimensions + fact) for reporting | ✅ Done — `sql/03_gold_star_schema.sql`, `sql/04_gold_load.sql` |
 
+
+## Pipeline status
+
+The data pipeline itself is complete end to end — every transformation from
+raw CSV through Bronze, Silver, and Gold is implemented, tested, and
+reproducible via the SQL scripts in `sql/`. What's not yet built is
+**orchestration**: right now each layer is loaded by manually running its
+script in order. An automated trigger (SSIS, a scheduled job, or similar)
+would be the natural next step if this pipeline needed to run repeatedly
+against a live, updating source rather than a one-time file.
+
 ## Star schema
 
 ![PC Sales Star Schema](diagrams/PC_Star_Schema.png)
