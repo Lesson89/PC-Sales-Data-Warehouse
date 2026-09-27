@@ -73,3 +73,52 @@ Profile the Bronze data for issues, plan the Silver layer table structure, load 
 - Trim leading/trailing whitespace on text columns as part of the Silver load (profiling checked for it but the load script doesn't explicitly trim yet)
 - Design and build the Gold star schema (FactSales + 5 dimensions) from the cleaned Silver data
 - Eventually revisit SSIS for the Silver → Gold load, now that the messy-data patterns are better understood
+
+## 2026-09-27
+
+**Goal:**
+
+Check Silver for duplicates and whitespace issues, then begin designing the Gold star schema.
+
+**Done:**
+- Checked CleanedSales for duplicate sales (matching customer, product, purchase date, and price) — found none
+- Checked all key text columns for leading/trailing whitespace — found none, source data was clean on this front
+- Confirmed Silver layer is complete: 10,000 rows, correct types, no duplicates, no whitespace issues, ship dates properly nulled
+
+**Next:**
+
+- Design and build the Gold star schema (FactSales + 5 dimensions) from CleanedSales
+
+---
+
+## 2026-09-27
+
+**Goal:**
+
+Design and build the Gold star schema, then load it from the cleaned Silver data.
+
+**Done:**
+
+- Checked Silver for duplicates (none found) and whitespace issues (none found) — confirmed Silver layer complete
+- Created the Gold DDL (03_gold_star_schema.sql): FactSales + 5 dimensions in PCSalesDW, matching the original star schema design
+- Built the Gold load script (04_gold_load.sql): DimDate generated as a full calendar range, other dimensions loaded via MERGE, FactSales loaded via joins back to each dimension
+- Loaded and verified all 6 tables: DimLocation (5,479), DimCustomer (10,000), DimProduct (2,233), DimEmployee (800), DimDate (1,124), FactSales (10,000)
+- Confirmed FactSales correctly carries 5,071 NULL ShipDateIDs, matching Bronze/Silver exactly
+
+**Challenges:**
+
+- Several source columns (ShopAge, PCMarketPrice, TotalSalesPerEmployee) turned out to have multiple different values recorded for the same real-world entity (e.g. one shop with several different ages logged across different sales) — this broke the first MERGE attempt with UNIQUE constraint violations, since SELECT DISTINCT treated each variation as a separate row
+- Fixed by grouping on the true natural key and reducing the noisy attribute with MIN() to get exactly one row per entity
+- Hit a strange, unexplained error using "RowCount" as a column alias — failed even when typed fresh in a new query window, ruling out a copy-paste issue. Worked around it by renaming the alias to "TotalRows"; root cause never identified
+
+**Learned:**
+
+- A column that looks like part of a natural key (ShopAge, price, sales total) might actually be a noisy, per-transaction value rather than a stable attribute — worth checking with COUNT(DISTINCT ...) before assuming a MERGE will work cleanly
+- LEFT JOIN vs JOIN matters a lot when loading a fact table — a plain JOIN on ShipDate would have silently dropped every unshipped order instead of keeping them with a NULL foreign key
+- DimCustomer landed at exactly 10,000 rows (same as total sales) — every customer in this dataset bought exactly once, a real characteristic of the data worth remembering when writing up analysis later
+
+**Next:**
+
+- Update README architecture table to mark Gold as done
+- Consider writing a few sample reporting queries against the star schema as a demo
+- Revisit SSIS for the Silver → Gold load, now that the full pipeline logic is proven in SQL

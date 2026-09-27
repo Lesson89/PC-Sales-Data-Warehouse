@@ -5,24 +5,27 @@ project demonstrating the full pipeline from raw source to a query-ready
 warehouse, using medallion architecture (Bronze → Silver → Gold).
 
 ## Project goal
+
 Take a single denormalised sales sheet and design/build a dimensional
 model (star schema) suitable for BI reporting.
 
 ## Tech stack
+
 - SQL Server (T-SQL, SSMS)
 - SSIS (planned for Silver → Gold loading)
 - draw.io (ER / star schema modelling)
 - Git/GitHub for version control
 
 ## Architecture plan (medallion)
+
 | Layer | Purpose | Status |
 |---|---|---|
 | **Bronze** | Raw staging table, mirrors source file as-is | ✅ Done — `sql/01_bronze_staging.sql` |
 | **Silver** | Cleaned, typed, de-duplicated data | ✅ Done — `sql/02_silver_clean.sql` |
-| **Gold** | Star schema (dimensions + fact) for reporting | ⏳ Not started |
-| **Loading** | SSIS package(s) for Silver → Gold | ⏳ Not started |
+| **Gold** | Star schema (dimensions + fact) for reporting | ✅ Done — `sql/03_gold_star_schema.sql`, `sql/04_gold_load.sql` |
 
 ## Star schema
+
 ![PC Sales Star Schema](diagrams/PC_Star_Schema.png)
 
 One fact table (`FactSales`) with five dimensions (`DimLocation`,
