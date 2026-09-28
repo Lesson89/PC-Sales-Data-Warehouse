@@ -81,6 +81,7 @@ Profile the Bronze data for issues, plan the Silver layer table structure, load 
 Check Silver for duplicates and whitespace issues, then begin designing the Gold star schema.
 
 **Done:**
+
 - Checked CleanedSales for duplicate sales (matching customer, product, purchase date, and price) — found none
 - Checked all key text columns for leading/trailing whitespace — found none, source data was clean on this front
 - Confirmed Silver layer is complete: 10,000 rows, correct types, no duplicates, no whitespace issues, ship dates properly nulled
@@ -122,3 +123,36 @@ Design and build the Gold star schema, then load it from the cleaned Silver data
 - Update README architecture table to mark Gold as done
 - Consider writing a few sample reporting queries against the star schema as a demo
 - Revisit SSIS for the Silver → Gold load, now that the full pipeline logic is proven in SQL
+
+
+---
+
+## 2026-09-28
+
+**Goal:**
+
+Automate the Silver → Gold load with SSIS, now that the logic is proven in SQL.
+
+**Done:**
+
+- Moved the Gold load logic into three stored procedures (usp_ClearGold, usp_LoadDimensions, usp_LoadFactSales) in PCSalesDW, tested standalone in SSMS before touching SSIS
+- Built a new SSIS project (PCSales_ETL) in etl/ssis/, this time named explicitly on creation to avoid the stray-folder problem from earlier
+- Added Trust Server Certificate = True on the OLE DB connection to fix the same certificate error hit before
+- Built a 3-task Control Flow (Clear Gold → Load Dimensions → Load FactSales), each an Execute SQL Task calling one procedure
+- Ran the package: all three tasks succeeded, validation query confirmed all row counts unchanged (10,000 / 5,479 / 10,000 / 2,233 / 800 / 1,124 / 10,000 with 5,071 null ship dates)
+- Fixed .gitignore: bin/, obj/, and .vs/ were never actually saved from an earlier session, so SSIS build artifacts were showing as untracked; added and confirmed with git status -u before committing
+
+**Challenges:**
+
+- Same certificate trust error as the first SSIS attempt — same fix (Trust Server Certificate = True)
+- .gitignore additions from a previous session had never actually been written to the file, despite thinking they were — caught by checking git status -u instead of assuming
+
+**Learned:**
+
+- Building SSIS logic on top of stored procedures already tested in SSMS made this SSIS build fast and mostly error-free, unlike the first attempt (Bronze) where the transformation logic and SSIS mechanics were being debugged at the same time
+- git status only shows what's genuinely untracked — if .gitignore isn't working, checking the actual file contents (Get-Content .gitignore) is faster than guessing why
+
+**Next:**
+
+- Consider wrapping Bronze → Silver in a procedure too, for a single-click full pipeline refresh
+- Sample reporting queries against the star schema as a demo

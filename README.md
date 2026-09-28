@@ -12,7 +12,7 @@ model (star schema) suitable for BI reporting.
 ## Tech stack
 
 - SQL Server (T-SQL, SSMS)
-- SSIS (planned for Silver → Gold loading)
+- | **Loading** | SSIS package for Silver → Gold | ✅ Done — `etl/ssis/PCSales_ETL/Gold_Load.dtsx`, calls stored procedures |
 - draw.io (ER / star schema modelling)
 - Git/GitHub for version control
 
@@ -26,14 +26,16 @@ model (star schema) suitable for BI reporting.
 
 
 ## Pipeline status
+## Pipeline status
 
-The data pipeline itself is complete end to end — every transformation from
-raw CSV through Bronze, Silver, and Gold is implemented, tested, and
-reproducible via the SQL scripts in `sql/`. What's not yet built is
-**orchestration**: right now each layer is loaded by manually running its
-script in order. An automated trigger (SSIS, a scheduled job, or similar)
-would be the natural next step if this pipeline needed to run repeatedly
-against a live, updating source rather than a one-time file.
+The data pipeline is complete end to end, from raw CSV through Bronze,
+Silver, and Gold, with the Silver → Gold step now automated. Bronze and
+Silver are loaded with re-runnable SQL scripts (`sql/`). The Gold load
+logic lives in three stored procedures (`sql/06_gold_load_procedures.sql`)
+— clear, load dimensions, load fact — orchestrated by an SSIS package
+(`etl/ssis/PCSales_ETL/Gold_Load.dtsx`) that runs them in sequence. Bronze
+→ Silver isn't automated yet; that's the natural next step if this needed
+to run against a live, updating source.
 
 ## Star schema
 
