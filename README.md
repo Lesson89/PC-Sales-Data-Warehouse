@@ -12,7 +12,6 @@ model (star schema) suitable for BI reporting.
 ## Tech stack
 
 - SQL Server (T-SQL, SSMS)
-- | **Loading** | SSIS package for Silver → Gold | ✅ Done — `etl/ssis/PCSales_ETL/Gold_Load.dtsx`, calls stored procedures |
 - draw.io (ER / star schema modelling)
 - Git/GitHub for version control
 
@@ -23,9 +22,8 @@ model (star schema) suitable for BI reporting.
 | **Bronze** | Raw staging table, mirrors source file as-is | ✅ Done — `sql/01_bronze_staging.sql` |
 | **Silver** | Cleaned, typed, de-duplicated data | ✅ Done — `sql/02_silver_clean.sql` |
 | **Gold** | Star schema (dimensions + fact) for reporting | ✅ Done — `sql/03_gold_star_schema.sql`, `sql/04_gold_load.sql` |
+| **Loading** | SSIS package for Silver → Gold | ✅ Done — `etl/ssis/PCSales_ETL/Gold_Load.dtsx`, calls stored procedures |
 
-
-## Pipeline status
 ## Pipeline status
 
 The data pipeline is complete end to end, from raw CSV through Bronze,
