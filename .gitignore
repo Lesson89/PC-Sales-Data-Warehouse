@@ -1,2 +1,7 @@
 data/*
 !data/.gitkeep
+# SSIS / Visual Studio build output
+bin/
+obj/
+.vs/
+*.dtproj.user
