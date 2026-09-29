@@ -156,3 +156,23 @@ Automate the Silver → Gold load with SSIS, now that the logic is proven in SQL
 
 - Consider wrapping Bronze → Silver in a procedure too, for a single-click full pipeline refresh
 - Sample reporting queries against the star schema as a demo
+
+
+---
+
+## 2026-09-29
+
+**Goal:**
+
+Write sample reporting queries against the Gold star schema to demonstrate it in action.
+
+**Done:**
+
+- Wrote and ran 6 reporting queries (sql/07_sample_reports.sql): revenue by continent, monthly sales trend, top 10 products, revenue by department, shipped vs unshipped split, and average days from purchase to ship
+- Verified all results are sensible: Africa and North America nearly tied on revenue (~19,680 avg order value each), March 2024 correctly shows a partial month (data ends 2024-04-08), 5,071 unshipped vs 4,929 shipped orders matches every prior layer exactly
+- Confirmed the role-playing DimDate design works in practice: query 6 joins DimDate twice (once per date role) to compute avg days to ship = 15 days, a metric only possible because of that design choice
+
+**Learned:**
+
+- The shipped-vs-unshipped query is direct proof the LEFT JOIN decision made in usp_LoadFactSales was correct — a plain JOIN there would have silently dropped over half the revenue from Gold
+- Having a demo query built specifically around the role-playing dimension (not just an ordinary join) is a good thing to walk through in an interview, since it shows the design choice was deliberate and has a purpose, not just extra complexity
